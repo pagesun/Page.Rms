@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Page.Rms</name>
+    </assembly>
+    <members>
+        <member name="M:Page.Rms.Extensions.AddRms(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注入RMS告警服务
+            </summary>
+            <param name="serviceCollection"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Extensions.AddRms(Microsoft.Extensions.DependencyInjection.IServiceCollection,Page.Rms.RmsOptions,System.Net.Http.IHttpClientFactory)">
+            <summary>
+            注入RMS告警服务
+            </summary>
+            <param name="serviceCollection"></param>
+            <param name="options"></param>
+            <param name="clientFactory"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Page.Rms.Rms">
+            <summary>
+            RMS监控服务
+            </summary>
+        </member>
+        <member name="M:Page.Rms.Rms.#ctor(Page.Rms.RmsOptions,System.Net.Http.IHttpClientFactory)">
+            <summary>
+                RMS监控
+            </summary>
+            <param name="options"></param>
+            <param name="clientFactory"></param>
+        </member>
+        <member name="M:Page.Rms.Rms.NoticeAsync(Page.Rms.RmsNotice)">
+            <summary>
+                发送告警信息
+            </summary>
+            <param name="noticeMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.NoticeAsync(System.String,System.String,System.Int32,System.String)">
+            <summary>
+                发送告警信息
+            </summary>
+            <param name="pointCode">监控点简码。通过监控点管理->监控点列表->监控点简码</param>
+            <param name="errorCode">错误简码。通过监控点管理->监控点列表->监控点简码->查看</param>
+            <param name="level">级别(自定义的，0至6之间，数字越小级别越高)</param>
+            <param name="content">内容,可以是数组也可以是字符串，目前暂定数组，内容4万个字符以内</param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.RestoreAsync(Page.Rms.RmsRestore)">
+            <summary>
+                自动恢复告警
+            </summary>
+            <param name="restoreMessage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.RestoreAsync(System.String,System.String,System.Int32,System.String)">
+            <summary>
+                自动恢复告警
+            </summary>
+            <param name="pointCode">监控点简码。通过监控点管理->监控点列表->监控点简码</param>
+            <param name="errorCode">错误简码。通过监控点管理->监控点列表->监控点简码->查看</param>
+            <param name="resultStatus">级别(自定义的，0至6之间，数字越小级别越高)</param>
+            <param name="content">内容,可以是数组也可以是字符串，目前暂定数组，内容4万个字符以内</param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.RmsRequest(Page.Rms.RmsData,System.String)">
+            <summary>
+                请求RMS API
+            </summary>
+            <param name="message"></param>
+            <param name="requestUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.GetRequestParameter(Page.Rms.RmsData)">
+            <summary>
+                构造请求参数
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.CreateToken(System.String)">
+            <summary>
+                计算token
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.Check(Page.Rms.RmsNotice)">
+            <summary>
+                补全服务器信息
+            </summary>
+            <param name="notice"></param>
+        </member>
+        <member name="M:Page.Rms.Rms.Check(Page.Rms.RmsRestore)">
+            <summary>
+                补全服务器信息
+            </summary>
+            <param name="notice"></param>
+        </member>
+        <member name="M:Page.Rms.Rms.GetTimesTamp">
+            <summary>
+                获取时间戳
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.GetLocalAddress">
+            <summary>
+                获取本地ip地址
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Page.Rms.Rms.GetServerName">
+            <summary>
+                获取服务器名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Page.Rms.RmsOptions.ProjectName">
+            <summary>
+                项目名称
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsOptions.Key">
+            <summary>
+                接口密钥
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsOptions.ProjectCode">
+            <summary>
+                项目简码
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsOptions.NoticeUrl">
+            <summary>
+                告警API
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsOptions.RestoreUrl">
+            <summary>
+                自动恢复API
+            </summary>
+        </member>
+        <member name="T:Page.Rms.RmsRequestData">
+            <summary>
+            RMS API请求参数
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRequestData.Token">
+            <summary>
+                访问令牌(key+json格式化的data后进行md5加密)key由rms系统提供
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRequestData.Encode">
+            <summary>
+                是否进行base64编码
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRequestData.Data">
+            <summary>
+                请求参数
+            </summary>
+        </member>
+        <member name="T:Page.Rms.RmsData">
+            <summary>
+            rms api请求参数主体
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsData.PointCode">
+            <summary>
+                监控点简码。通过监控点管理->监控点列表->监控点简码
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsData.ErrorCode">
+            <summary>
+                错误简码。通过监控点管理->监控点列表->监控点简码->查看
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsData.Content">
+            <summary>
+                内容,可以是数组也可以是字符串，目前暂定数组，内容4万个字符以内
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsData.ServerIp">
+            <summary>
+                服务器唯一标识，目前使用ip地址(如：10.37.1.1),默认值本地ip
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsData.ServerName">
+            <summary>
+                服务器标识名,默认值本机名
+            </summary>
+        </member>
+        <member name="T:Page.Rms.RmsNotice">
+            <summary>
+            告警
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsNotice.NoticeTimeStamp">
+            <summary>
+                发生时间(时间戳),默认当前时间
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsNotice.Level">
+            <summary>
+                级别(网站自定义的，0至6之间，数字越小级别越高)
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsNotice.IsTest">
+            <summary>
+                是否是自检信息，1是 0否
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsNotice.ServiceType">
+            <summary>
+                服务组合,运维和DB监控点必填
+            </summary>
+        </member>
+        <member name="T:Page.Rms.RmsRestore">
+            <summary>
+            告警恢复
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRestore.NoticeTime">
+            <summary>
+                发生时间(时间戳),默认当前时间
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRestore.ResultStatus">
+            <summary>
+                错误类型 0 误报 1 代码问题 2 SQL语句问题 3 服务器问题 4网络问题  5 DB服务问题  6 缓存服务问题 9其他问题 10 阈值设置问题
+            </summary>
+        </member>
+        <member name="P:Page.Rms.RmsRestore.ResultExtra">
+            <summary>
+                处理方案  最多255个字符
+            </summary>
+        </member>
+        <member name="T:Page.Rms.Content">
+            <summary>
+                消息内容
+            </summary>
+        </member>
+        <member name="M:Page.Rms.Content.#ctor(System.String)">
+            <summary>
+            消息内容
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="P:Page.Rms.Content.Info">
+            <summary>
+                消息内容
+            </summary>
+        </member>
+    </members>
+</doc>

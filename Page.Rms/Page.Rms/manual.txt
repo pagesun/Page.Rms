@@ -1,0 +1,16 @@
+﻿1.appsettings中配置RMS接口信息
+"Rms": {
+    "ProjectName": "项目名称",
+    "ProjectCode": "项目简码",
+    "Key": "接口密钥",
+    "RestoreUrl": "告警api地址",
+    "NoticeUrl": "自动恢复api地址"
+  }
+2.注入RMS服务
+    //rms服务依赖于httpclient
+    services.AddHttpClient();
+    //注入rms
+    services.AddRms(Configuration);
+3.接口调用
+    rms.NoticeAsync();
+    rms.RestoreAsync();
