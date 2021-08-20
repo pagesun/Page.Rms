@@ -23,7 +23,14 @@ Rms监控系统接入包
 //rms服务依赖于httpclient
 services.AddHttpClient();
 //注入rms
-services.AddRms(Configuration);
+services.AddRms(new RmsOptions
+            {
+                Key = Configuration["Rms:Key"],
+                ProjectName = Configuration["Rms:ProjectName"],
+                ProjectCode = Configuration["Rms:ProjectCode"],
+                RestoreUrl = Configuration["Rms:RestoreUrl"],
+                NoticeUrl = Configuration["Rms:NoticeUrl"],
+            });
 ```
 
 ## 接口调用
