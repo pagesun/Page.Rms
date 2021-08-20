@@ -1,27 +1,22 @@
 ﻿using System.Net.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Page.Rms
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Extensions
     {
         /// <summary>
         /// 注入RMS告警服务
         /// </summary>
         /// <param name="serviceCollection"></param>
-        /// <param name="configuration"></param>
+        /// <param name="rmsOptions"></param>
         /// <returns></returns>
-        public static IServiceCollection AddRms(this IServiceCollection serviceCollection, IConfiguration configuration)
+        public static IServiceCollection AddRms(this IServiceCollection serviceCollection, RmsOptions rmsOptions )
         {
-            serviceCollection.AddSingleton(new RmsOptions
-            {
-                ProjectCode = configuration["Rms:ProjectCode"],
-                ProjectName = configuration["Rms:ProjectName"],
-                Key = configuration["Rms:Key"],
-                RestoreUrl = configuration["Rms:RestoreUrl"],
-                NoticeUrl = configuration["Rms:NoticeUrl"]
-            });
+            serviceCollection.AddSingleton(rmsOptions);
 
             serviceCollection.AddSingleton(provider =>
             {

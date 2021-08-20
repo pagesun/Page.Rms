@@ -4,12 +4,17 @@
         <name>Page.Rms</name>
     </assembly>
     <members>
-        <member name="M:Page.Rms.Extensions.AddRms(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="T:Page.Rms.Extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Page.Rms.Extensions.AddRms(Microsoft.Extensions.DependencyInjection.IServiceCollection,Page.Rms.RmsOptions)">
             <summary>
             注入RMS告警服务
             </summary>
             <param name="serviceCollection"></param>
-            <param name="configuration"></param>
+            <param name="rmsOptions"></param>
             <returns></returns>
         </member>
         <member name="M:Page.Rms.Extensions.AddRms(Microsoft.Extensions.DependencyInjection.IServiceCollection,Page.Rms.RmsOptions,System.Net.Http.IHttpClientFactory)">
@@ -118,6 +123,11 @@
                 获取服务器名
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Page.Rms.RmsOptions">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:Page.Rms.RmsOptions.ProjectName">
             <summary>

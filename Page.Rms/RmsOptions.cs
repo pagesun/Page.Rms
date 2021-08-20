@@ -2,6 +2,9 @@
 
 namespace Page.Rms
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class RmsOptions : IOptions<RmsOptions>
     {
         /// <summary>
